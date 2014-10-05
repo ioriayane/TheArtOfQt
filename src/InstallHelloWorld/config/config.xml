@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>HelloWorld</Name>
+    <Version>1.0.0</Version>
+    <Title>HelloWorldの</Title>
+    <Publisher>relog</Publisher>
+    <StartMenuDir>HelloWorldDir</StartMenuDir>
+    <TargetDir>@ApplicationsDir@/@ProductName@</TargetDir>
+    <AllowSpaceInPath>true</AllowSpaceInPath>
+</Installer>

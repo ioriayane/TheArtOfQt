@@ -9,6 +9,8 @@
 *.so
 *.dll
 *.dylib
+*.exe
+*.dll
 
 # Qt-es
 
@@ -22,6 +24,7 @@ qrc_*.cpp
 ui_*.h
 Makefile*
 *-build-*
+build-*
 
 # QtCreator
 
@@ -30,3 +33,6 @@ Makefile*
 #QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
+
+*.BAK
+Thumbs.db
