@@ -51,6 +51,7 @@ function Component()
   //  installer.setDefaultPageVisible(QInstaller.PerformInstallation, false);   //インストール中
   //  installer.setDefaultPageVisible(QInstaller.LicenseCheck, false);          //ライセンス確認を非表示
 
+
   //インストールが完了したときのイベント（つまり完了確認ページが表示されたときのイベント）
   installer.installationFinished.connect(this, Component.prototype.installationFinishedPageIsShown);
   //完了ボタンが押されたときのイベント
@@ -86,6 +87,12 @@ Component.prototype.createOperations = function()
   }
 }
 
+//インストール先ディレクトリの選択したときのイベント
+Component.prototype.targetDirectorySelected = function ()
+{
+
+}
+
 //インストールが完了したときのイベント（つまり完了確認ページが表示されたときのイベント）
 Component.prototype.installationFinishedPageIsShown = function ()
 {
@@ -103,12 +110,11 @@ Component.prototype.installationFinished = function ()
 {
   try{
     if(installer.isInstaller() && installer.status === QInstaller.Success){
-      //openAppCheckBox
       var form = component.userInterface("FinishAndOpenForm");
       if(form.openReadmeCheckBox.checked){
         QDesktopServices.openUrl("file:///" + installer.value("TargetDir") + "/README.txt");
       }
-      if(form.openAppCheckBox.checked){
+      if(form.runAppCheckBox.checked){
         QDesktopServices.openUrl("file:///" + installer.value("TargetDir") + "/HelloWorld.exe");
       }
     }

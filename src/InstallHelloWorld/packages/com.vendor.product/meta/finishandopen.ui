@@ -22,9 +22,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="openAppCheckBox">
+    <widget class="QCheckBox" name="runAppCheckBox">
      <property name="text">
-      <string>Open Application</string>
+      <string>Run Application</string>
      </property>
     </widget>
    </item>
