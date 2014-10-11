@@ -11,7 +11,7 @@ goto QUIT
 REM ------------------------------------------
 :X86
 echo x86
-c:\QtProjects\installer-framework\bin32\binarycreator.exe  -c config\config.xml -p packages HelloSetup.exe
+C:\Qt\QtIFW-1.5-32\bin\binarycreator.exe -c config\config.xml -p packages HelloSetup.exe
 
 goto QUIT
 
@@ -19,7 +19,7 @@ goto QUIT
 REM ------------------------------------------
 :X64
 echo x64
-c:\QtProjects\installer-framework\bin64\binarycreator.exe -c config\config.xml -p packages HelloSetup.exe
+C:\Qt\QtIFW-1.5-64\bin\binarycreator.exe -c config\config.xml -p packages HelloSetup.exe
 
 goto QUIT
 
