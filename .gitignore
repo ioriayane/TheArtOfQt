@@ -36,3 +36,6 @@ build-*
 
 *.BAK
 Thumbs.db
+*.7z
+*.sha1
+src/InstallHelloWorld/repository/Updates.xml

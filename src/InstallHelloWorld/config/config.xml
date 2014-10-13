@@ -8,4 +8,12 @@
     <TargetDir>@ApplicationsDir@/@ProductName@</TargetDir>
     <AllowSpaceInPath>true</AllowSpaceInPath>
     <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
+    <RemoteRepositories>
+        <Repository>
+            <Url>http://relog.xii.jp/download/helloworld</Url>
+            <Enabled>1</Enabled>
+            <Username>hello</Username>
+            <DisplayName>HelloWorld repository(http://relog.xii.jp/download/helloworld)</DisplayName>
+        </Repository>
+    </RemoteRepositories>
 </Installer>
