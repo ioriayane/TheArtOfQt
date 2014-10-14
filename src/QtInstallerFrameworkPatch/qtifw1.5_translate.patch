@@ -1,0 +1,25 @@
+diff --git a/src/sdk/installerbase.qrc b/src/sdk/installerbase.qrc
+index c434618..184f758 100644
+--- a/src/sdk/installerbase.qrc
++++ b/src/sdk/installerbase.qrc
+@@ -8,6 +8,6 @@
+         <file alias="translations/zh_CN.qm">translations/zh_cn.qm</file>
+         <file>translations/qt_zh_CN.qm</file>
+         <file alias="translations/ja_JP.qm">translations/ja_jp.qm</file>
+-        <file>translations/qt_ja.qm</file>
++        <file alias="translations/qt_ja.qm">translations/qtbase_ja.qm</file>
+     </qresource>
+ </RCC>
+diff --git a/src/sdk/sdk.pro b/src/sdk/sdk.pro
+index 67fd77f..f4522a0 100644
+--- a/src/sdk/sdk.pro
++++ b/src/sdk/sdk.pro
+@@ -13,7 +13,7 @@ isEqual(QT_MAJOR_VERSION, 5) {
+ DESTDIR = $$IFW_APP_PATH
+ 
+ exists($$LRELEASE) {
+-    QT_LANGUAGES = qt_de qt_ru qt_zh_CN qt_ja
++    QT_LANGUAGES = qt_de qt_ru qt_zh_CN qtbase_ja
+     IB_LANGUAGES = de_de en_us ru_ru zh_cn ja_jp
+     defineReplace(prependAll) {
+         for(a,$$1):result += $$2$${a}$$3
