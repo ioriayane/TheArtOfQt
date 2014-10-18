@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>Documents component</DisplayName>
+    <Description>Install documents.</Description>
+    <Version>0.1</Version>
+    <ReleaseDate>2014-12-30</ReleaseDate>
+    <Name>com.vendor.product.documents</Name>
+    <Licenses>
+        <License name="Documents License Agreement" file="license.txt" />
+    </Licenses>
+    <Default>false</Default>
+</Package>

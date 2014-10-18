@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>Application component</DisplayName>
+    <Description>Install application.</Description>
+    <Version>0.1</Version>
+    <ReleaseDate>2014-12-30</ReleaseDate>
+    <Name>com.vendor.product.application</Name>
+    <Licenses>
+        <License name="Application License Agreement" file="license.txt" />
+    </Licenses>
+    <Default>true</Default>
+</Package>

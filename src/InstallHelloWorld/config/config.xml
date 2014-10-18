@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Installer>
     <Name>HelloWorld</Name>
-    <Version>1.0.1</Version>
+    <Version>1.0.4</Version>
     <Title>HelloWorldの</Title>
     <Publisher>relog</Publisher>
     <StartMenuDir>HelloWorldDir</StartMenuDir>
