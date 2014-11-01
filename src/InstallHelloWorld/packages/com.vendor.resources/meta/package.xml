@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>Resources component</DisplayName>
+    <Description>Install resources.</Description>
+    <Version>0.2</Version>
+    <ReleaseDate>2014-12-30</ReleaseDate>
+    <Name>com.vendor.resources</Name>
+    <Licenses>
+        <License name="Resources License Agreement" file="license.txt" />
+    </Licenses>
+    <Default>true</Default>
+</Package>
