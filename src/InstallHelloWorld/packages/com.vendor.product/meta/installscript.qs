@@ -50,48 +50,50 @@ function Component()
   //  installer.setDefaultPageVisible(QInstaller.StartMenuSelection, false);    //スタートメニューの登録
   //  installer.setDefaultPageVisible(QInstaller.PerformInstallation, false);   //インストール中
   //  installer.setDefaultPageVisible(QInstaller.LicenseCheck, false);          //ライセンス確認を非表示
+  //  installer.setDefaultPageVisible(QInstaller.InstallationFinished, true);          //
 
 
   //インストールが完了したときのイベント（つまり完了確認ページが表示されたときのイベント）
   installer.installationFinished.connect(this, Component.prototype.installationFinishedPageIsShown);
   //完了ボタンが押されたときのイベント
   installer.finishButtonClicked.connect(this, Component.prototype.installationFinished);
+
 }
 
 //コンポーネント選択のデフォルト確認
 Component.prototype.isDefault = function()
 {
-  // select the component by default
   return true;
 }
 
-//インストール動作を作成
+//インストール動作を追加
 Component.prototype.createOperations = function()
 {
   try{
-    // call the base create operations function
+    // createOperationsの基本処理を実行
     component.createOperations();
 
     if(installer.value("os") === "win"){
       //Readme.txt用のショートカット
-      component.addOperation("CreateShortcut", "@TargetDir@/README.txt", "@StartMenuDir@/README.lnk",
-                             "workingDirectory=@TargetDir@", "iconPath=%SystemRoot%/system32/SHELL32.dll",
-                             "iconId=2");
+      component.addOperation("CreateShortcut"
+　　　　　　　　　　　　　　, "@TargetDir@/README.txt"
+　　　　　　　　　　　　　　, "@StartMenuDir@/README.lnk"
+　　　　　　　　　　　　　　, "workingDirectory=@TargetDir@"
+　　　　　　　　　　　　　　, "iconPath=%SystemRoot%/system32/SHELL32.dll"
+　　　　　　　　　　　　　　, "iconId=2");
       //実行ファイル用のショートカット
-      component.addOperation("CreateShortcut", "@TargetDir@/HelloWorld.exe", "@StartMenuDir@/HelloWorld.lnk",
-                             "workingDirectory=@TargetDir@", "iconPath=@TargetDir@/HelloWorld.exe",
-                             "iconId=0");
+      component.addOperation("CreateShortcut"
+　　　　　　　　　　　　　　, "@TargetDir@/HelloWorld.exe"
+　　　　　　　　　　　　　　, "@StartMenuDir@/HelloWorld.lnk"
+　　　　　　　　　　　　　　, "workingDirectory=@TargetDir@"
+　　　　　　　　　　　　　　, "iconPath=@TargetDir@/HelloWorld.exe"
+　　　　　　　　　　　　　　, "iconId=0");
     }
   }catch(e){
     print(e);
   }
 }
 
-//インストール先ディレクトリの選択したときのイベント
-Component.prototype.targetDirectorySelected = function ()
-{
-
-}
 
 //インストールが完了したときのイベント（つまり完了確認ページが表示されたときのイベント）
 Component.prototype.installationFinishedPageIsShown = function ()

@@ -2,7 +2,7 @@
 <Package>
     <DisplayName>The root component</DisplayName>
     <Description>Install this example.</Description>
-    <Version>0.1.2-1</Version>
+    <Version>0.1.0-1</Version>
     <ReleaseDate>2014-12-30</ReleaseDate>
     <Name>com.vendor.product</Name>
     <Licenses>

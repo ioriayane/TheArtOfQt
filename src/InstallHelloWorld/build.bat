@@ -1,7 +1,7 @@
 @echo off
 
 REM ------------------------------------------
-REM ƒIƒ“ƒ‰ƒCƒ“‚©ƒIƒtƒ‰ƒCƒ“‚©‚ğŒˆ’è
+REM ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ã‹ã‚ªãƒ•ãƒ©ã‚¤ãƒ³ã‹ã‚’æ±ºå®š
 
 
 if '%2'=='offline' goto OFFLINE
@@ -20,7 +20,7 @@ goto ARCH
 
 
 REM ------------------------------------------
-REM ƒA[ƒLƒeƒNƒ`ƒƒ‚ğŒˆ’è
+REM ã‚¢ãƒ¼ã‚­ãƒ†ã‚¯ãƒãƒ£ã‚’æ±ºå®š
 :ARCH
 
 if '%1'=='x86' goto X86
@@ -33,12 +33,12 @@ goto QUIT
 
 
 REM ------------------------------------------
-REM ƒA[ƒLƒeƒNƒ`ƒƒ‚²‚Æ‚Ìˆ—
+REM ã‚¢ãƒ¼ã‚­ãƒ†ã‚¯ãƒãƒ£ã”ã¨ã®å‡¦ç†
 
 REM ------------------------------------------
 :X86
 echo x86
-C:\Qt\QtIFW-1.5-32\bin\binarycreator.exe %OFFLINE% -c config\config.xml -p packages HelloSetup.exe
+C:\Qt\QtIFW-2.0-32\bin\binarycreator.exe %OFFLINE% -c config\config.xml -p packages HelloSetup.exe
 
 goto QUIT
 
@@ -46,12 +46,12 @@ goto QUIT
 REM ------------------------------------------
 :X64
 echo x64
-C:\Qt\QtIFW-1.5-64\bin\binarycreator.exe %OFFLINE% -c config\config.xml -p packages HelloSetup.exe
+C:\Qt\QtIFW-2.0-64\bin\binarycreator.exe %OFFLINE% -c config\config.xml -p packages HelloSetup.exe
 
 goto QUIT
 
 
 REM ------------------------------------------
-REM I—¹
+REM çµ‚äº†
 :QUIT
 

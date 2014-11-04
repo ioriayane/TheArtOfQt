@@ -9,4 +9,7 @@
         <License name="Application License Agreement" file="license.txt" />
     </Licenses>
     <Default>true</Default>
+    <Translations>
+        <Translation>ja_jp.qm</Translation>
+    </Translations>
 </Package>
