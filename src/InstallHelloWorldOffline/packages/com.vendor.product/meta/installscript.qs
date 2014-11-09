@@ -42,17 +42,6 @@
 //コンストラクタ
 function Component()
 {
-  //ページの表示非表示を設定
-  //  installer.setDefaultPageVisible(QInstaller.Introduction, false)          //概要（効かない）
-  //  installer.setDefaultPageVisible(QInstaller.TargetDirectory, false)       //インストール先の選択
-  //  installer.setDefaultPageVisible(QInstaller.ComponentSelection, false)    //コンポーネントの選択
-  //  installer.setDefaultPageVisible(QInstaller.ReadyForInstallation, false)  //インストーラの最終確認画面
-  //  installer.setDefaultPageVisible(QInstaller.StartMenuSelection, false)    //スタートメニューの登録
-  //  installer.setDefaultPageVisible(QInstaller.PerformInstallation, false)   //インストール中
-  //  installer.setDefaultPageVisible(QInstaller.LicenseCheck, false)          //ライセンス確認を非表示
-  //  installer.setDefaultPageVisible(QInstaller.InstallationFinished, true)   //完了確認
-
-
   //完了ページにレイアウトを追加
   if(installer.isInstaller()){                                       // [1]
     installer.addWizardPageItem(component

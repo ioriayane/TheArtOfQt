@@ -5,13 +5,13 @@
     <Version>0.1.0-1</Version>
     <ReleaseDate>2014-12-30</ReleaseDate>
     <Name>com.vendor.product</Name>
+    <Default>script</Default>
     <Licenses>
         <License name="Hello World Public License Agreement" file="license.txt" />
     </Licenses>
     <Translations>
         <Translation>ja_jp.qm</Translation>
     </Translations>
-    <Default>script</Default>
     <Script>installscript.qs</Script>
     <UserInterfaces>
         <UserInterface>finishandopen.ui</UserInterface>
