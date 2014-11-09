@@ -45,8 +45,8 @@ function Component()
   //完了ページにレイアウトを追加
   if(installer.isInstaller()){                                       // [1]
     installer.addWizardPageItem(component
-　　　　　　　　　　　　　　　, "FinishAndOpenForm"
-　　　　　　　　　　　　　　　, QInstaller.InstallationFinished)      // [2]
+                              , "FinishAndOpenForm"
+                              , QInstaller.InstallationFinished)      // [2]
   }
   //インストールが完了したときのイベント（つまり完了確認ページが表示されたときのイベント）
   installer.installationFinished.connect(this
@@ -73,18 +73,18 @@ Component.prototype.createOperations = function()
     if(installer.value("os") === "win"){
       //Readme.txt用のショートカット
       component.addOperation("CreateShortcut"
-　　　　　　　　　　　　　　, "@TargetDir@/README.txt"
-　　　　　　　　　　　　　　, "@StartMenuDir@/README.lnk"
-　　　　　　　　　　　　　　, "workingDirectory=@TargetDir@"
-　　　　　　　　　　　　　　, "iconPath=%SystemRoot%/system32/SHELL32.dll"
-　　　　　　　　　　　　　　, "iconId=2")
+                           , "@TargetDir@/README.txt"
+                           , "@StartMenuDir@/README.lnk"
+                           , "workingDirectory=@TargetDir@"
+                           , "iconPath=%SystemRoot%/system32/SHELL32.dll"
+                           , "iconId=2")
       //実行ファイル用のショートカット
       component.addOperation("CreateShortcut"
-　　　　　　　　　　　　　　, "@TargetDir@/HelloWorld.exe"
-　　　　　　　　　　　　　　, "@StartMenuDir@/HelloWorld.lnk"
-　　　　　　　　　　　　　　, "workingDirectory=@TargetDir@"
-　　　　　　　　　　　　　　, "iconPath=@TargetDir@/HelloWorld.exe"
-　　　　　　　　　　　　　　, "iconId=0")
+                           , "@TargetDir@/HelloWorld.exe"
+                           , "@StartMenuDir@/HelloWorld.lnk"
+                           , "workingDirectory=@TargetDir@"
+                           , "iconPath=@TargetDir@/HelloWorld.exe"
+                           , "iconId=0")
     }
   }catch(e){
     print(e)
