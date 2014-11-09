@@ -42,19 +42,25 @@
 //コンストラクタ
 function Component()
 {
+  //ロードされたときのシグナル
+  component.loaded.connect(this, Component.prototype.loaded)    // [1]
+  //ページを追加する
+  installer.addWizardPage(component
+                        , "StandardOrCustom"
+                        , QInstaller.TargetDirectory)           // [2]
+
   //完了ページにレイアウトを追加
-  if(installer.isInstaller()){                                       // [1]
+  if(installer.isInstaller()){
     installer.addWizardPageItem(component
                               , "FinishAndOpenForm"
-                              , QInstaller.InstallationFinished)      // [2]
+                              , QInstaller.InstallationFinished)
   }
   //インストールが完了したときのイベント（つまり完了確認ページが表示されたときのイベント）
   installer.installationFinished.connect(this
-                              , Component.prototype.installationFinishedPageIsShown);  // [3]
+                              , Component.prototype.installationFinishedPageIsShown)
   //完了ボタンが押されたときのシグナル
   installer.finishButtonClicked.connect(this
-                              , Component.prototype.installationFinished)  // [4]
-
+                              , Component.prototype.installationFinished)
 }
 
 //コンポーネント選択のデフォルト確認
@@ -97,7 +103,7 @@ Component.prototype.installationFinishedPageIsShown = function ()
   try{
     if(installer.isInstaller() && installer.status !== QInstaller.Success){
       //追加したレイアウトのオブジェクト取得
-      var form = component.userInterface("FinishAndOpenForm")                      // [5]
+      var form = component.userInterface("FinishAndOpenForm")
       //失敗したので追加した部分全体を非表示
       form.visible = false
     }
@@ -110,14 +116,14 @@ Component.prototype.installationFinishedPageIsShown = function ()
 Component.prototype.installationFinished = function ()
 {
   try{
-    if(installer.isInstaller() && installer.status === QInstaller.Success){        // [6]
+    if(installer.isInstaller() && installer.status === QInstaller.Success){
       //追加したレイアウトのオブジェクト取得
       var form = component.userInterface("FinishAndOpenForm")
       //チェック状態を確認
-      if(form.openReadmeCheckBox.checked){                                         // [7]
+      if(form.openReadmeCheckBox.checked){
         //実行
         QDesktopServices.openUrl("file:///"
-                                 + installer.value("TargetDir") + "/README.txt")   // [8]
+                                 + installer.value("TargetDir") + "/README.txt")
       }
       if(form.runAppCheckBox.checked){
         QDesktopServices.openUrl("file:///"
@@ -129,3 +135,63 @@ Component.prototype.installationFinished = function ()
   }
 }
 
+
+//ロードされたときのシグナルハンドラ
+Component.prototype.loaded = function ()
+{
+  try{
+    //ページのオブジェクトを取得
+    var page = gui.pageByObjectName("DynamicStandardOrCustom");                 // [3]
+    if(page != null){
+      //ページに切り替わったときのシグナル
+      page.entered.connect(Component.prototype.dynamicStandardOrCustomEntered) // [4]
+      //ページから離れるときのシグナル
+      page.left.connect(Component.prototype.dynamicStandardOrCustomLeft)
+    }
+    //ページのオブジェクトを取得（QWidget）
+    var pageW = gui.pageWidgetByObjectName("DynamicStandardOrCustom")          // [5]
+    if(pageW != null){
+      //標準のラジオボタンの状態がトグルしたときのシグナル
+      pageW.standardRadioButton.toggled.connect(
+                         Component.prototype.standardRadioButtonToggled)      // [6]
+      //標準のラジオボタンをデフォルトOnにする
+      pageW.standardRadioButton.setChecked(true)                              // [7]
+    }
+  }catch(e){
+    print(e)
+  }
+}
+
+//ページに切り替わったときのシグナルハンドラ
+Component.prototype.dynamicStandardOrCustomEntered = function ()
+{
+  try{
+    //ページのオブジェクトを取得（QWidget）
+    var pageW = gui.pageWidgetByObjectName("DynamicStandardOrCustom")
+    if(pageW != null){
+      //メッセージの一部をアプリ名に変更
+      pageW.standardLabel.text
+         = pageW.standardLabel.text.replace("%1", installer.value("ProductName")) // [8]
+    }
+  }catch(e){
+    print(e)
+  }
+}
+//ページから離れるときのシグナルハンドラ
+Component.prototype.dynamicStandardOrCustomLeft = function ()
+{
+//QMessageBox.information("id", "title", "left")
+}
+
+//標準のラジオボタンの状態がトグルしたときのシグナルハンドラ
+Component.prototype.standardRadioButtonToggled = function (checked)
+{
+  try{
+    //インストール先の選択
+    installer.setDefaultPageVisible(QInstaller.TargetDirectory, !checked)     // [9]
+    //コンポーネントの選択
+    installer.setDefaultPageVisible(QInstaller.ComponentSelection, !checked)
+  }catch(e){
+    print(e)
+  }
+}
