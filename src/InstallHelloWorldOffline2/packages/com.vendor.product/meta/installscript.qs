@@ -180,7 +180,7 @@ Component.prototype.dynamicStandardOrCustomEntered = function ()
 //ページから離れるときのシグナルハンドラ
 Component.prototype.dynamicStandardOrCustomLeft = function ()
 {
-//QMessageBox.information("id", "title", "left")
+//QMessageBox.information("signal:left", "title", "left")
 }
 
 //標準のラジオボタンの状態がトグルしたときのシグナルハンドラ
