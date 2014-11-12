@@ -42,6 +42,10 @@
 //コンストラクタ
 function Component()
 {
+  //標準インストールで通らないページを非表示にする。
+  installer.setDefaultPageVisible(QInstaller.TargetDirectory, false)
+  installer.setDefaultPageVisible(QInstaller.ComponentSelection, false)
+
   //ロードされたときのシグナル
   component.loaded.connect(this, Component.prototype.loaded)    // [1]
   //ページを追加する
@@ -50,11 +54,9 @@ function Component()
                         , QInstaller.TargetDirectory)           // [2]
 
   //完了ページにレイアウトを追加
-  if(installer.isInstaller()){
-    installer.addWizardPageItem(component
+  installer.addWizardPageItem(component
                               , "FinishAndOpenForm"
                               , QInstaller.InstallationFinished)
-  }
   //インストールが完了したときのイベント（つまり完了確認ページが表示されたときのイベント）
   installer.installationFinished.connect(this
                               , Component.prototype.installationFinishedPageIsShown)
@@ -101,7 +103,7 @@ Component.prototype.createOperations = function()
 Component.prototype.installationFinishedPageIsShown = function ()
 {
   try{
-    if(installer.isInstaller() && installer.status !== QInstaller.Success){
+    if(installer.status !== QInstaller.Success){
       //追加したレイアウトのオブジェクト取得
       var form = component.userInterface("FinishAndOpenForm")
       //失敗したので追加した部分全体を非表示
@@ -116,7 +118,7 @@ Component.prototype.installationFinishedPageIsShown = function ()
 Component.prototype.installationFinished = function ()
 {
   try{
-    if(installer.isInstaller() && installer.status === QInstaller.Success){
+    if(installer.status === QInstaller.Success){
       //追加したレイアウトのオブジェクト取得
       var form = component.userInterface("FinishAndOpenForm")
       //チェック状態を確認
