@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>180</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,14 +49,14 @@
       <string>Standard</string>
      </property>
      <property name="checked">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QLabel" name="standardLabel">
      <property name="text">
-      <string>%1 will be installed with the common options.</string>
+      <string>%NAME% will be installed with the common options.</string>
      </property>
      <property name="indent">
       <number>20</number>
@@ -85,7 +85,7 @@
       <string>Custom</string>
      </property>
      <property name="checked">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
     </widget>
    </item>

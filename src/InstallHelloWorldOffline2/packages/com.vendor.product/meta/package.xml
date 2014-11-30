@@ -14,6 +14,6 @@
     </Translations>
     <Script>installscript.qs</Script>
     <UserInterfaces>
-        <UserInterface>finishandopen.ui</UserInterface>
+        <UserInterface>openfileform.ui</UserInterface>
     </UserInterfaces>
 </Package>

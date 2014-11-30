@@ -1,51 +1,6 @@
-/**************************************************************************
-**
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
-** Contact: http://www.qt-project.org/legal
-**
-** This file is part of the Qt Installer Framework.
-**
-** $QT_BEGIN_LICENSE:LGPL$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and Digia.  For licensing terms and
-** conditions see http://qt.digia.com/licensing.  For further information
-** use the contact form at http://qt.digia.com/contact-us.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 2.1 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPL included in the
-** packaging of this file.  Please review the following information to
-** ensure the GNU Lesser General Public License version 2.1 requirements
-** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
-**
-** In addition, as a special exception, Digia gives you certain additional
-** rights.  These rights are described in the Digia Qt LGPL Exception
-** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
-**
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 3.0 as published by the Free Software
-** Foundation and appearing in the file LICENSE.GPL included in the
-** packaging of this file.  Please review the following information to
-** ensure the GNU General Public License version 3.0 requirements will be
-** met: http://www.gnu.org/copyleft/gpl.html.
-**
-**
-** $QT_END_LICENSE$
-**
-**************************************************************************/
-
 //コンストラクタ
 function Component()
 {
-  //標準インストールで通らないページを非表示にする。
-  installer.setDefaultPageVisible(QInstaller.TargetDirectory, false)
-  installer.setDefaultPageVisible(QInstaller.ComponentSelection, false)
-
   //ロードされたときのシグナル
   component.loaded.connect(this, Component.prototype.loaded)    // [1]
   //ページを追加する
@@ -53,10 +8,6 @@ function Component()
                         , "StandardOrCustom"
                         , QInstaller.TargetDirectory)           // [2]
 
-  //完了ページにレイアウトを追加
-  installer.addWizardPageItem(component
-                              , "FinishAndOpenForm"
-                              , QInstaller.InstallationFinished)
   //インストールが完了したときのイベント（つまり完了確認ページが表示されたときのイベント）
   installer.installationFinished.connect(this
                               , Component.prototype.installationFinishedPageIsShown)
@@ -103,11 +54,11 @@ Component.prototype.createOperations = function()
 Component.prototype.installationFinishedPageIsShown = function ()
 {
   try{
-    if(installer.status !== QInstaller.Success){
-      //追加したレイアウトのオブジェクト取得
-      var form = component.userInterface("FinishAndOpenForm")
-      //失敗したので追加した部分全体を非表示
-      form.visible = false
+    if(installer.status === QInstaller.Success){
+      //完了ページにレイアウトを追加
+      installer.addWizardPageItem(component
+                                  , "OpenFileForm"
+                                  , QInstaller.InstallationFinished)
     }
   }catch(e){
     print(e)
@@ -120,7 +71,7 @@ Component.prototype.installationFinished = function ()
   try{
     if(installer.status === QInstaller.Success){
       //追加したレイアウトのオブジェクト取得
-      var form = component.userInterface("FinishAndOpenForm")
+      var form = component.userInterface("OpenFileForm")
       //チェック状態を確認
       if(form.openReadmeCheckBox.checked){
         //実行
@@ -156,8 +107,8 @@ Component.prototype.loaded = function ()
       //標準のラジオボタンの状態がトグルしたときのシグナル
       pageW.standardRadioButton.toggled.connect(
                          Component.prototype.standardRadioButtonToggled)      // [6]
-      //標準のラジオボタンをデフォルトOnにする
-      pageW.standardRadioButton.setChecked(true)                              // [7]
+      //ページの状態を標準設定に変更
+      Component.prototype.standardRadioButtonToggled(true)                    // [7]
     }
   }catch(e){
     print(e)
@@ -173,7 +124,7 @@ Component.prototype.dynamicStandardOrCustomEntered = function ()
     if(pageW != null){
       //メッセージの一部をアプリ名に変更
       pageW.standardLabel.text
-         = pageW.standardLabel.text.replace("%1", installer.value("ProductName")) // [8]
+         = pageW.standardLabel.text.replace("%NAME%", installer.value("ProductName")) // [8]
     }
   }catch(e){
     print(e)

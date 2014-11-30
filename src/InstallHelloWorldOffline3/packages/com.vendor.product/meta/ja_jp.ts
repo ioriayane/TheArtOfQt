@@ -2,14 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP">
 <context>
-    <name>FinishAndOpenForm</name>
+    <name>OpenFileForm</name>
     <message>
-        <location filename="finishandopen.ui" line="17"/>
+        <location filename="openfileform.ui" line="17"/>
         <source>Open Readme.txt</source>
         <translation>Readme.txtを開く</translation>
     </message>
     <message>
-        <location filename="finishandopen.ui" line="24"/>
+        <location filename="openfileform.ui" line="24"/>
         <source>Run Application</source>
         <translation>アプリケーションを実行する</translation>
     </message>
@@ -33,8 +33,8 @@
     </message>
     <message>
         <location filename="standardorcustom.ui" line="59"/>
-        <source>%1 will be installed with the common options.</source>
-        <translation>標準的な構成で %1 をインストールします。</translation>
+        <source>%NAME% will be installed with the common options.</source>
+        <translation>標準的な構成で %NAME% をインストールします。</translation>
     </message>
     <message>
         <location filename="standardorcustom.ui" line="85"/>
