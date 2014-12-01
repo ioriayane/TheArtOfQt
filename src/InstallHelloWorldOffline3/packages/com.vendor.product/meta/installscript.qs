@@ -1,6 +1,10 @@
 //コンストラクタ
 function Component()
 {
+  //標準インストールで通らないページを非表示にする。
+  installer.setDefaultPageVisible(QInstaller.TargetDirectory, false)
+  installer.setDefaultPageVisible(QInstaller.ComponentSelection, false)
+
   //ロードされたときのシグナル
   component.loaded.connect(this, Component.prototype.loaded)    // [1]
   //ページを追加する
@@ -107,8 +111,6 @@ Component.prototype.loaded = function ()
       //標準のラジオボタンの状態がトグルしたときのシグナル
       pageW.standardRadioButton.toggled.connect(
                          Component.prototype.standardRadioButtonToggled)      // [6]
-      //ページの状態を標準設定に変更
-      Component.prototype.standardRadioButtonToggled(true)                    // [7]
     }
   }catch(e){
     print(e)
@@ -124,7 +126,7 @@ Component.prototype.dynamicStandardOrCustomEntered = function ()
     if(pageW != null){
       //メッセージの一部をアプリ名に変更
       pageW.standardLabel.text
-         = pageW.standardLabel.text.replace("%NAME%", installer.value("ProductName")) // [8]
+         = pageW.standardLabel.text.replace("%NAME%", installer.value("ProductName")) // [7]
     }
   }catch(e){
     print(e)
@@ -141,7 +143,7 @@ Component.prototype.standardRadioButtonToggled = function (checked)
 {
   try{
     //インストール先の選択
-    installer.setDefaultPageVisible(QInstaller.TargetDirectory, !checked)     // [9]
+    installer.setDefaultPageVisible(QInstaller.TargetDirectory, !checked)     // [8]
     //コンポーネントの選択
     installer.setDefaultPageVisible(QInstaller.ComponentSelection, !checked)
   }catch(e){
