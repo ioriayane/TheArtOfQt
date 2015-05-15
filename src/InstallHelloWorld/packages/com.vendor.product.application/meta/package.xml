@@ -10,6 +10,6 @@
     </Licenses>
     <Default>true</Default>
     <Translations>
-        <Translation>ja_jp.qm</Translation>
+        <Translation>ja.qm</Translation>
     </Translations>
 </Package>

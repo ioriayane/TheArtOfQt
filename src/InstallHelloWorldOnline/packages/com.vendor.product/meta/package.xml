@@ -10,7 +10,7 @@
     <License name="Hello World Public License Agreement" file="license.txt" />
   </Licenses>
   <Translations>
-    <Translation>ja_jp.qm</Translation>
+    <Translation>ja.qm</Translation>
   </Translations>
   <Script>installscript.qs</Script>
   <UserInterfaces>
