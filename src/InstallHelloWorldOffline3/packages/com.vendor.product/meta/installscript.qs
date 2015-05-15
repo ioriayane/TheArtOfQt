@@ -26,6 +26,22 @@ Component.prototype.isDefault = function()
   return true
 }
 
+//翻訳が行われたときに実行する処理
+Component.prototype.retranslateUi = function()
+{
+  try{
+    //ページのオブジェクトを取得（QWidget）
+    var pageW = gui.pageWidgetByObjectName("DynamicStandardOrCustom")
+    if(pageW != null){
+      //メッセージの一部をアプリ名に変更
+      pageW.standardLabel.text
+         = pageW.standardLabel.text.replace("%NAME%", installer.value("ProductName")) // [3]
+    }
+  }catch(e){
+    print(e)
+  }
+}
+
 //インストール動作を追加
 Component.prototype.createOperations = function()
 {
@@ -98,19 +114,19 @@ Component.prototype.loaded = function ()
 {
   try{
     //ページのオブジェクトを取得
-    var page = gui.pageByObjectName("DynamicStandardOrCustom");                 // [3]
+    var page = gui.pageByObjectName("DynamicStandardOrCustom");                 // [4]
     if(page != null){
       //ページに切り替わったときのシグナル
-      page.entered.connect(Component.prototype.dynamicStandardOrCustomEntered) // [4]
+      page.entered.connect(Component.prototype.dynamicStandardOrCustomEntered) // [5]
       //ページから離れるときのシグナル
       page.left.connect(Component.prototype.dynamicStandardOrCustomLeft)
     }
     //ページのオブジェクトを取得（QWidget）
-    var pageW = gui.pageWidgetByObjectName("DynamicStandardOrCustom")          // [5]
+    var pageW = gui.pageWidgetByObjectName("DynamicStandardOrCustom")          // [6]
     if(pageW != null){
       //標準のラジオボタンの状態がトグルしたときのシグナル
       pageW.standardRadioButton.toggled.connect(
-                         Component.prototype.standardRadioButtonToggled)      // [6]
+                         Component.prototype.standardRadioButtonToggled)      // [7]
     }
   }catch(e){
     print(e)
@@ -120,17 +136,7 @@ Component.prototype.loaded = function ()
 //ページに切り替わったときのシグナルハンドラ
 Component.prototype.dynamicStandardOrCustomEntered = function ()
 {
-  try{
-    //ページのオブジェクトを取得（QWidget）
-    var pageW = gui.pageWidgetByObjectName("DynamicStandardOrCustom")
-    if(pageW != null){
-      //メッセージの一部をアプリ名に変更
-      pageW.standardLabel.text
-         = pageW.standardLabel.text.replace("%NAME%", installer.value("ProductName")) // [7]
-    }
-  }catch(e){
-    print(e)
-  }
+//QMessageBox.information("signal:entered", "title", "entered")
 }
 //ページから離れるときのシグナルハンドラ
 Component.prototype.dynamicStandardOrCustomLeft = function ()
